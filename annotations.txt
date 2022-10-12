@@ -1,0 +1,29 @@
+single request reaching 30K promises 
+
+- Promises are both powerful abstraction and exceeding easy to do incorrectly 
+  - Understanding how JS and Node scheudle code is key to understanding Node.js perf
+
+- FileRead executed in a thread pool 
+  read a file in a separed thread 
+  v8 turns 
+  when the data is available
+  v8 start executing JS again
+  With a promise you never ever want to create a promise that resolves  at the same execution block
+  - avoid Promise.resolve 
+  You wanna use and and execute excplicity actuvitiy in the future
+    - end up with orphan promise chains with no way to handle it
+    - memory leaks
+      setImmediate(async () => {
+      await Promise.reject('immediate**')
+      })
+  - An empty async function with nothing in it allocates 3 Promises 
+  - never wrap a sync function with async keyword
+  
+  https://www.jasnell.me/posts/broken-promises
+  https://www.nearform.com/blog/optimise-node-js-performance-avoiding-broken-promises/
+
+Put just an async into a function 
+  - show in the chrome tracing how many promises were being creating from requests
+  chrome://tracing/
+  https://ui.perfetto.dev/
+
