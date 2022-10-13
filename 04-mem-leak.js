@@ -29,6 +29,9 @@ let globalFileDescriptor = 0;
   leakfd = true
   // will throw an error and never close the file descriptor
 
+  // couldve been surrounded by a trycatch
+  // and use asyncClose on finally
+  // I wont do it now to show the memory leak
   functionThatDoesNotExist();
   await asyncClose(fileDescriptor)
   leakfd = false
