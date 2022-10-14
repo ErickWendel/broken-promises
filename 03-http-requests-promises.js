@@ -17,6 +17,16 @@ async function perform() {
   return 'abc'
 }
 
+// ;(async () => {
+//   Promise.resolve("abc").then(() => {
+//     for (let index = 0; index < 1e9; index++);
+//     Promise.resolve("abc").then(() => {
+//       for (let index = 0; index < 1e9; index++);
+//       process.exit()
+//     })
+//   })
+// })();
+
 createServer((request, response) => {
     // const result = await perform()
     // response.end(result)
@@ -24,7 +34,9 @@ createServer((request, response) => {
     // perform().then(result => {
     //   response.end(result)
     // })
-     response.end('result')
+
+    response.end('result')
+    //  process.exit(0)
   })
   .listen(3000)
   .on('listening', () => console.log('running at 3000'))

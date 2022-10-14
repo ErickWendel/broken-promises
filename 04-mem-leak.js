@@ -42,7 +42,7 @@ let globalFileDescriptor = 0;
 // make sure you handle rejections before returning it to the caller
 function handleErrorCallback(err) {
 
-  // process.on cannot handle Promise rejections so we handle it before returning values
+  // process.on doesnt expect a Promise as return so we handle rejections before returning values
   return (async () => {
 
       console.error('Error ocurred', err.message, {
